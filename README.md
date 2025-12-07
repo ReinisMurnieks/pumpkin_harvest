@@ -1,5 +1,7 @@
 # 🏙️ Real City Building Simulator
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A realistic city-building simulation game with complex systems including power, water, employment, pollution, traffic, and crime management!
 
 ## Features
