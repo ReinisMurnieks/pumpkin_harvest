@@ -1,0 +1,19 @@
+{
+  "name": "City Building Simulator",
+  "version": "1.0.0",
+  "description": "Educational city-building game for children",
+  "author": "Reinis Murnieks",
+  "license": "MIT",
+  "repository": "https://github.com/ReinisMurnieks/pumpkin_harvest",
+  "language": "Python",
+  "framework": "Flask",
+  "tags": ["game", "education", "simulation", "city-building", "kids"],
+  "targetAudience": "Children aged 6-8",
+  "features": [
+    "City building simulation",
+    "Day/night cycle",
+    "Metro system",
+    "Resource management",
+    "Real-time rendering"
+  ]
+}
