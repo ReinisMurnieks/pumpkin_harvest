@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Simulation - Logistics for Kids</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>🏙️ City Planning Simulator 🏙️</h1>
+        
+        <div class="score-board">
+            <span>👥 Pop: <span id="population">0</span></span>
+            <span>💰 $<span id="budget">50000</span></span>
+            <span>😊 <span id="happiness">50</span>%</span>
+            <span>⚡ <span id="power-status">0/0</span></span>
+            <span>💧 <span id="water-status">0/0</span></span>
+            <span>🏭 Pollution: <span id="pollution">0</span></span>
+        </div>
+        
+        <div class="stats-panel">
+            <span>🕐 <span id="time-display">☀️ 08:00</span></span>
+            <span>👔 Jobs: <span id="employment">0</span>/<span id="unemployed">0</span></span>
+            <span>🚗 Traffic: <span id="traffic">0</span></span>
+            <span>🚔 Crime: <span id="crime">0</span></span>
+            <span>💵 Income: $<span id="income">0</span>/mo</span>
+            <span>💸 Expenses: $<span id="expenses">0</span>/mo</span>
+        </div>
+
+        <div class="control-panel">
+            <button id="pause-btn" class="control-btn">⏸️ Pause</button>
+            <button id="clear-btn" class="control-btn">🗑️ Clear City</button>
+            <button id="auto-metro-btn" class="control-btn">🚇 Auto Metro</button>
+            <button id="speed-day-btn" class="control-btn">⏩ Speed Up Time</button>
+        </div>
+
+        <!-- Main simulation canvas -->
+        <div class="simulation-area">
+            <canvas id="track-canvas" width="900" height="600"></canvas>
+            
+            <!-- Stations overlay -->
+            <div class="stations-overlay">
+                {% for station in stations %}
+                <div class="station-marker" 
+                     data-station-id="{{ station.id }}"
+                     data-accepts="{{ station.accepts|join(',') }}"
+                     style="left: {{ station.x }}px; top: {{ station.y }}px;">
+                    <div class="station-emoji">{{ station.emoji }}</div>
+                    <div class="station-name">{{ station.name }}</div>
+                    <div class="station-cargo-display"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Building tools panel -->
+        <div class="cargo-panel">
+            <h3>🏗️ Building Tools</h3>
+            <div class="building-tools">
+                <button class="tool-btn" data-tool="residential" data-cost="1000">
+                    🏠 House<br><small>$1k</small>
+                </button>
+                <button class="tool-btn" data-tool="apartment" data-cost="3000">
+                    🏘️ Apartment<br><small>$3k</small>
+                </button>
+                <button class="tool-btn" data-tool="commercial" data-cost="2500">
+                    🏢 Office<br><small>$2.5k</small>
+                </button>
+                <button class="tool-btn" data-tool="industrial" data-cost="3500">
+                    🏭 Factory<br><small>$3.5k</small>
+                </button>
+                <button class="tool-btn" data-tool="park" data-cost="500">
+                    🌳 Park<br><small>$500</small>
+                </button>
+                <button class="tool-btn" data-tool="road" data-cost="200">
+                    🛣️ Road<br><small>$200</small>
+                </button>
+                <button class="tool-btn" data-tool="metro" data-cost="5000">
+                    🚇 Metro<br><small>$5k</small>
+                </button>
+                <button class="tool-btn" data-tool="hospital" data-cost="8000">
+                    🏥 Hospital<br><small>$8k</small>
+                </button>
+                <button class="tool-btn" data-tool="school" data-cost="5000">
+                    🏫 School<br><small>$5k</small>
+                </button>
+                <button class="tool-btn" data-tool="police" data-cost="6000">
+                    👮 Police<br><small>$6k</small>
+                </button>
+                <button class="tool-btn" data-tool="powerplant" data-cost="10000">
+                    ⚡ Power<br><small>$10k</small>
+                </button>
+                <button class="tool-btn" data-tool="watertower" data-cost="7000">
+                    💧 Water<br><small>$7k</small>
+                </button>
+                <button class="tool-btn" data-tool="stadium" data-cost="15000">
+                    🏟️ Stadium<br><small>$15k</small>
+                </button>
+                <button class="tool-btn" data-tool="delete" data-cost="0">
+                    ❌ Delete<br><small>Free</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div id="city-status">🏗️ Build power plants and water towers first!</div>
+            <div id="tool-info">💡 Tip: Balance residential, commercial, and industrial zones</div>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+    </div>
+
+    <script>
+        // City planning app - no predefined data needed
+    </script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
